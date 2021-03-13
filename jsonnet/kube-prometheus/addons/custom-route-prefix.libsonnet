@@ -23,12 +23,33 @@ local defaults = {
         routePrefix: defaults.prometheusRoutePrefix,
       },
     },
+    serviceMonitor+: {
+      spec+: {
+        endpoints+: std.map(
+          function(e) e {
+            path: defaults.prometheusRoutePrefix + 'metrics',
+          }
+          , super.endpoints
+        ),
+      },
+    },
   },
 
   alertmanager+: {
     alertmanager+: {
       spec+: {
         routePrefix: defaults.alertmanagerRoutePrefix,
+      },
+    },
+
+    serviceMonitor+: {
+      spec+: {
+        endpoints+: std.map(
+          function(e) e {
+            path: defaults.alertmanagerRoutePrefix + 'metrics',
+          }
+          , super.endpoints
+        ),
       },
     },
   },
