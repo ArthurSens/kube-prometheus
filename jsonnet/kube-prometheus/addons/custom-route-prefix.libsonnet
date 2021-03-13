@@ -25,7 +25,7 @@ local defaults = {
     },
     serviceMonitor+: {
       spec+: {
-        endpoints+: std.map(
+        endpoints: std.map(
           function(e) e {
             path: defaults.prometheusRoutePrefix + 'metrics',
           }
@@ -44,7 +44,7 @@ local defaults = {
 
     serviceMonitor+: {
       spec+: {
-        endpoints+: std.map(
+        endpoints: std.map(
           function(e) e {
             path: defaults.alertmanagerRoutePrefix + 'metrics',
           }
